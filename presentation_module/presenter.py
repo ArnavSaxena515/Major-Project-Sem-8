@@ -50,7 +50,7 @@ def run_presenter():
 
 
         # Find the hand and its landmarks
-        print(len(detectorHand.findHands(img)))
+        #print(len(detectorHand.findHands(img)))
         img = detectorHand.findHands(img)  # with draw
         lmList, bboxInfo = detectorHand.findPosition(img)
         # Draw Gesture Threshold line

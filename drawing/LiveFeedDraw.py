@@ -42,6 +42,7 @@ def run_drawer():
 
             # 3 Check which fingers are up
             fingers_active = hand_detect.active_fingers()
+            print(len(fingers_active))
             # print(fingers_up)
 
             # 4 If selection mode - Two fingers are up
@@ -65,6 +66,9 @@ def run_drawer():
                         print("ERASER")
                 x_prev, y_prev = x1, y1
 
+            if fingers_active[0] and fingers_active[1] and fingers_active[2] and fingers_active[3] and fingers_active[4]:
+                imgCanvas = np.zeros((720, 1280, 3), np.uint8)
+
 
             # 5 If drawing mode - Index finger is up
             elif fingers_active[1] and fingers_active[2] == False:
@@ -81,15 +85,15 @@ def run_drawer():
             else:
                 x_prev, y_prev = x1, y1
 
+
         gray_image = cv2.cvtColor(imgCanvas, cv2.COLOR_BGR2GRAY)
         _, image_inverse = cv2.threshold(gray_image, 50, 255, cv2.THRESH_BINARY_INV)
         image_inverse = cv2.cvtColor(image_inverse, cv2.COLOR_GRAY2BGR)
         live_image = cv2.bitwise_and(live_image, image_inverse)
         live_image = cv2.bitwise_or(live_image, imgCanvas)
         cv2.imshow("Image", live_image)
-        # key = cv2.waitKey(0)
-        # if key == ord('q') or key == ord('Q'):
-        #     break
+        cv2.imshow("Image Canvas", imgCanvas)
+
         key = cv2.waitKey(1)
         if key == ord('q'):
             video_feed.release()
