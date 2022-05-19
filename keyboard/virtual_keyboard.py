@@ -67,7 +67,7 @@ def run_keyboard():
                     cv2.putText(img, button.text, (x + 20, y + 65),
                                 cv2.FONT_HERSHEY_PLAIN, 4, (255, 255, 255), 4)
                     l, _, _ = detector.findDistance(8, 12, img, draw=False)
-                    print(l)
+                    # print(l)
 
                     ## when clicked
                     if l < 30:

@@ -2,6 +2,8 @@ from cvzone.HandTrackingModule import HandDetector
 import cv2
 import os
 import numpy as np
+from tkinter.filedialog import askopenfilename
+
 
 # Parameters
 width, height = 1280, 720
@@ -34,12 +36,18 @@ def run_presenter():
     annotationNumber = -1
     annotationStart = False
     hs, ws = int(120 * 1), int(213 * 1)  # width and height of small image
+    pathFullImage = askopenfilename()
+    imgCurrent = cv2.imread(pathFullImage)
+    imgCurrent = cv2.resize(imgCurrent, (1280, 720), interpolation=cv2.INTER_CUBIC)
+
     while True:
         # Get image frame
         success, img = cap.read()
         img = cv2.flip(img, 1)
-        pathFullImage = os.path.join(folderPath, pathImages[imgNumber])
-        imgCurrent = cv2.imread(pathFullImage)
+        #pathFullImage = os.path.join(folderPath, pathImages[imgNumber])
+       # print(pathFullImage)
+
+
 
         # Find the hand and its landmarks
         print(len(detectorHand.findHands(img)))
@@ -117,7 +125,7 @@ def run_presenter():
         imgCurrent[0:hs, w - ws: w] = imgSmall
 
         cv2.imshow("Slides", imgCurrent)
-        cv2.imshow("Image", img)
+        #cv2.imshow("Image", img)
 
         key = cv2.waitKey(1)
         if key == ord('q'):
