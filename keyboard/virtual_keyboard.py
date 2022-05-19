@@ -89,6 +89,8 @@ def run_keyboard():
 
         key = cv2.waitKey(1)
         if key == ord('q'):
+            cap.release()
+            cv2.destroyAllWindows()
             break
 
     return

@@ -92,6 +92,8 @@ def run_drawer():
         #     break
         key = cv2.waitKey(1)
         if key == ord('q'):
+            video_feed.release()
+            cv2.destroyAllWindows()
             break
     return
     #

@@ -30,7 +30,11 @@ draw_button = Button(text="Use Drawer", highlightthickness=0, font=(FONT_NAME, 1
 presenter_button = Button(text="Use Presenter", highlightthickness=0, font=(FONT_NAME, 11, "bold"),
                           borderwidth=2, background="#d4483b", fg="white", activebackground="#d4483b",
                           activeforeground="white", width=15, command=presenter.run_presenter)
-keyboard_button.grid(row=1, column=1)
-draw_button.grid(row=2, column=1)
-presenter_button.grid(row=3, column=1)
+keyboard_button.grid(row=1, column=0)
+draw_button.grid(row=1, column=1)
+presenter_button.grid(row=1, column=2)
+exit_button = Button(window, text="Exit", highlightthickness=0, font=(FONT_NAME, 11, "bold"),
+                     borderwidth=2, background="#d4483b", fg="white", activebackground="#d4483b",
+                     activeforeground="white", width=15, command=window.destroy)
+exit_button.grid(row=2, column=1)
 window.mainloop()
